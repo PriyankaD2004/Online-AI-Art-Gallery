@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login Page</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 900px;
+    height: 550px;
+    display: flex;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.image-section {
+    width: 50%;
+}
+
+.image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.login-section {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.login-box {
+    width: 100%;
+}
+
+.login-box h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.login-box p {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 8px;
+}
+
+.input-group label {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    color: #999;
+    transition: 0.3s;
+    background: white;
+    padding: 0 5px;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+    top: -8px;
+    font-size: 12px;
+    color: #007bff;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+.extra {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.extra a {
+    text-decoration: none;
+    font-size: 13px;
+    color: #007bff;
+}
+
+.show-pass {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+}
+
+@media(max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+    }
+
+    .image-section {
+        width: 100%;
+        height: 200px;
+    }
+
+    .login-section {
+        width: 100%;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- IMAGE -->
+    <div class="image-section">
+        <img src="static/images/g1.webp">
+    </div>
+
+    <!-- LOGIN -->
+    <div class="login-section">
+
+        <form class="login-box" action="/" method="POST">
+
+            <h2>Welcome Back</h2>
+            <p>Login to continue</p>
+
+            <div class="input-group">
+                <input type="text" name="username" required>
+                <label>Username or Email</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" name="password" id="password" required>
+                <label>Password</label>
+                <span class="show-pass" onclick="togglePassword()">👁️</span>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+
+            <div class="extra">
+                <a href="/signup">Create Account</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+function togglePassword() {
+    const pass = document.getElementById("password");
+    pass.type = pass.type === "password" ? "text" : "password";
+}
+</script>
+
+</body>
+</html>

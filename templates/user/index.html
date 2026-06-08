@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DSP AI Art Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#0b1220;
+    color:white;
+}
+
+/* NAVBAR */
+.navbar{
+    position:fixed;
+    top:0;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    padding:15px 40px;
+    background:rgba(2,6,23,0.8);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+
+.navbar a{
+    color:white;
+    margin:0 12px;
+    text-decoration:none;
+    font-weight:500;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.navbar a:hover{
+    color:#ff7b00;
+}
+
+/* HERO */
+.hero{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    url('static/images/a5.jpeg') center/cover;
+}
+
+.hero h1{
+    font-size:60px;
+    text-shadow:0 0 20px rgba(255,123,0,0.5);
+}
+
+.hero p{
+    margin-top:10px;
+    opacity:0.8;
+}
+
+.hero button{
+    margin-top:25px;
+    padding:12px 25px;
+    border:none;
+    background:#ff7b00;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.hero button:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 20px #ff7b00;
+}
+
+/* SECTIONS */
+section{
+    padding:80px 40px;
+    text-align:center;
+}
+
+h2{
+    font-size:38px;
+    margin-bottom:30px;
+}
+
+/* FEATURES */
+.features{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.feature-box{
+    width:260px;
+    padding:25px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.1);
+    transition:0.4s;
+}
+
+.feature-box:hover{
+    transform:translateY(-12px) scale(1.05);
+    box-shadow:0 0 25px rgba(255,123,0,0.4);
+}
+
+.feature-box .icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.feature-box h3{
+    margin-bottom:10px;
+}
+
+.feature-box p{
+    font-size:14px;
+    opacity:0.8;
+}
+
+/* ===================== */
+/* ABOUT (FIXED SECTION) */
+/* ===================== */
+
+.about-grid{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.about-box{
+    width:250px;
+    padding:20px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.1);
+    transition:0.4s;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.about-box:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 0 25px rgba(255,123,0,0.4);
+}
+
+.about-box img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+    border-radius:12px;
+    margin-bottom:10px;
+}
+
+.about-box h3{
+    margin-bottom:8px;
+}
+
+.about-box p{
+    font-size:13px;
+    opacity:0.8;
+}
+
+/* GALLERY */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.4s;
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    transition:0.4s;
+}
+
+.card:hover img{
+    transform:scale(1.1);
+}
+
+.card:hover{
+    box-shadow:0 0 25px rgba(255,123,0,0.5);
+}
+
+/* FOOTER */
+footer{
+    padding:20px;
+    background:#020617;
+    text-align:center;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div><b>DSP AI Art Hub 🎨</b></div>
+    <div>
+        <a onclick="scrollToSection('home')">Home</a>
+        <a onclick="scrollToSection('features')">Features</a>
+        <a onclick="scrollToSection('about')">About</a>
+        <a onclick="scrollToSection('trending')">Trending</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<section id="home" class="hero">
+    <div>
+        <h1>Online AI Art Gallery</h1>
+        <p>Turn imagination into stunning digital reality</p>
+
+<a href="/gallery">
+    <button>Explore Gallery</button>
+</a>
+</button>
+    </div>
+</section>
+<!-- FEATURES -->
+<section id="features">
+    <h2>✨ Powerful Features</h2>
+
+    <div class="features">
+        <div class="feature-box">
+            <div class="icon">🎨</div>
+            <h3>AI Generation</h3>
+            <p>Create unique artwork using AI instantly.</p>
+        </div>
+
+        <div class="feature-box">
+            <div class="icon">⚡</div>
+            <h3>Fast Rendering</h3>
+            <p>Get high-quality art in seconds with optimized AI.</p>
+        </div>
+
+        <div class="feature-box">
+            <div class="icon">❤️</div>
+            <h3>Save & Like</h3>
+            <p>Build your personal collection of favorite art.</p>
+        </div>
+
+        <div class="feature-box">
+            <div class="icon">📤</div>
+            <h3>Upload Artwork</h3>
+            <p>Upload your own artwork to the gallery instantly.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2>🌌 About Us</h2>
+
+    <div style="display:flex; align-items:center; justify-content:center; gap:30px; flex-wrap:wrap; max-width:1000px; margin:auto;">
+
+        <!-- LEFT IMAGE -->
+        <img src="static\images\a6.jpg"
+             style="width:400px; max-width:100%; border-radius:15px; object-fit:cover; box-shadow:0 0 20px rgba(0,0,0,0.4);">
+
+        <!-- RIGHT TEXT -->
+        <div style="flex:1; min-width:280px; text-align:left;">
+
+            <h3 style="margin-bottom:10px;">DSP AI Art Hub 🎨</h3>
+
+            <p style="font-size:16px; line-height:1.8; opacity:0.85;">
+                DSP AI Art Hub is a creative platform where artificial intelligence meets imagination.
+                We allow users to explore, generate, and experience digital artwork powered by advanced AI models.
+                Our goal is to make creativity accessible to everyone through simple and powerful tools.
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section id="trending">
+    <h2>🔥 Trending Artworks</h2>
+    <div class="gallery" id="gallery"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    © 2026 DSP AI Art Hub | All Rights Reserved
+</footer>
+
+<script>
+
+function scrollToSection(id){
+    document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+/* GALLERY */
+let images=[
+"/static/images/a4.jpg",
+"/static/images/a1.jpg",
+"/static/images/a6.avif",
+"/static/images/a7.jpg",
+"/static/images/a9.jpg"
+];
+
+let gallery=document.getElementById("gallery");
+
+images.forEach(img=>{
+    let div=document.createElement("div");
+    div.className="card";
+    div.innerHTML=`<img src="${img}">`;
+    gallery.appendChild(div);
+});
+
+</script>
+
+</body>
+</html>

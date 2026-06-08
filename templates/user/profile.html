@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Profile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#0f172a,#020617);
+    color:white;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
+}
+
+/* PROFILE BOX */
+.profile-box{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.1);
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(0,0,0,0.5);
+    animation:fadeIn 1s ease;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* AVATAR */
+.avatar{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:linear-gradient(45deg,#ff7b00,#ff3d00);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    margin:auto;
+    margin-bottom:10px;
+    box-shadow:0 0 20px rgba(255,123,0,0.6);
+}
+
+/* STATS */
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    margin-top:20px;
+    flex-wrap:wrap;
+}
+
+.stat{
+    background:rgba(255,255,255,0.07);
+    padding:15px 25px;
+    border-radius:15px;
+    transition:0.3s;
+}
+
+.stat:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 20px rgba(255,123,0,0.4);
+}
+
+/* BUTTONS */
+.actions{
+    margin-top:20px;
+}
+
+.btn{
+    display:inline-block;
+    margin:5px;
+    padding:10px 20px;
+    border-radius:10px;
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+}
+
+.btn-gallery{ background:#ff4d6d; }
+.btn-upload{ background:#1dd1a1; }
+.btn-generate{ background:#54a0ff; }
+
+.btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 20px rgba(255,255,255,0.2);
+}
+
+/* GALLERY */
+.gallery{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:20px;
+}
+
+/* CARD */
+.card{
+    background:rgba(255,255,255,0.05);
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.4s;
+    position:relative;
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    transition:0.4s;
+}
+
+/* HOVER EFFECT */
+.card:hover img{
+    transform:scale(1.1);
+}
+
+.card:hover{
+    box-shadow:0 0 25px rgba(255,123,0,0.5);
+}
+
+/* OVERLAY */
+.overlay{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    padding:10px;
+    background:linear-gradient(transparent,rgba(0,0,0,0.8));
+    font-size:14px;
+}
+
+/* DELETE BUTTON */
+.delete-btn{
+    position:absolute;
+    top:10px;
+    right:10px;
+    background:#ff4757;
+    border:none;
+    color:white;
+    padding:6px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:12px;
+    opacity:0;
+    transition:0.3s;
+}
+
+.card:hover .delete-btn{
+    opacity:1;
+}
+
+.delete-btn:hover{
+    background:#ff1e4d;
+}
+
+/* EMPTY TEXT */
+.empty{
+    text-align:center;
+    opacity:0.6;
+    margin-top:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- PROFILE -->
+    <div class="profile-box">
+
+        <div class="avatar">
+            {{ user.username[0]|upper }}
+        </div>
+
+        <h2>{{ user.username }}</h2>
+        <p>{{ user.email }}</p>
+
+        <div class="stats">
+            <div class="stat">
+                <strong>{{ total_likes }}</strong><br>Likes
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="{{ url_for('gallery') }}" class="btn btn-gallery">🎨 Gallery</a>
+            <a href="/upload" class="btn btn-upload">📤 Upload</a>
+            <a href="/generate" class="btn btn-generate">⚡ Generate</a>
+        </div>
+
+    </div>
+
+    <!-- USER UPLOADS -->
+    <h3 style="margin-top:30px;">✨ Your Artworks</h3>
+
+    {% if images %}
+    <div class="gallery">
+        {% for img in images %}
+        <div class="card">
+
+            <img src="{{ img.image_url }}">
+
+            <!-- DELETE BUTTON -->
+            <form action="/delete/{{ img.id }}" method="POST"
+                  onsubmit="return confirm('Delete this artwork?');">
+                <button class="delete-btn">🗑 Delete</button>
+            </form>
+
+            <div class="overlay">
+                ❤️ {{ img.likes }} likes
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p class="empty">No uploads yet 😢</p>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

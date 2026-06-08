@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload Artwork</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#0f172a,#020617);
+    color:white;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* CONTAINER */
+.container{
+    width:90%;
+    max-width:500px;
+    padding:25px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 0 40px rgba(0,0,0,0.5);
+    animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+/* FILE UPLOAD */
+.upload-box{
+    border:2px dashed rgba(255,255,255,0.3);
+    padding:20px;
+    text-align:center;
+    border-radius:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.upload-box:hover{
+    border-color:#ff7b00;
+    background:rgba(255,123,0,0.1);
+}
+
+.upload-box input{
+    display:none;
+}
+
+/* IMAGE PREVIEW */
+.preview{
+    margin-top:15px;
+    text-align:center;
+}
+
+.preview img{
+    width:100%;
+    max-height:200px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+/* TEXTAREA */
+textarea{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    margin-top:15px;
+    resize:none;
+    background:#111;
+    color:white;
+}
+
+/* CHARACTER COUNT */
+.counter{
+    font-size:12px;
+    text-align:right;
+    opacity:0.7;
+}
+
+/* TOGGLE */
+.toggle{
+    margin-top:15px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+/* CONTACT BOX */
+#contactBox{
+    margin-top:10px;
+    display:none;
+    animation:fadeIn 0.5s;
+}
+
+input[type="text"]{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    background:#111;
+    color:white;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    margin-top:20px;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:#ff7b00;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px #ff7b00;
+}
+
+/* BACK BUTTON */
+.back{
+    text-align:center;
+    margin-top:10px;
+}
+
+.back a{
+    color:#aaa;
+    text-decoration:none;
+}
+
+.back a:hover{
+    color:#ff7b00;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🎨 Upload Your Artwork</h2>
+
+<form method="POST" enctype="multipart/form-data">
+
+    <!-- DRAG DROP -->
+    <label class="upload-box">
+        📁 Click or Drag Image Here
+        <input type="file" name="image" id="fileInput" required>
+    </label>
+
+    <!-- PREVIEW -->
+    <div class="preview" id="preview"></div>
+
+    <!-- DESCRIPTION -->
+    <textarea name="description" id="desc" maxlength="150"
+        placeholder="Describe your artwork..." required></textarea>
+    <div class="counter" id="counter">0 / 150</div>
+
+
+    <!-- SUBMIT -->
+    <button>🚀 Upload Artwork</button>
+
+</form>
+
+<div class="back">
+    <a href="/gallery">⬅ Back to Gallery</a>
+</div>
+
+</div>
+
+<script>
+
+/* IMAGE PREVIEW */
+document.getElementById("fileInput").onchange = function(e){
+    let file = e.target.files[0];
+    if(file){
+        let reader = new FileReader();
+        reader.onload = function(e){
+            document.getElementById("preview").innerHTML =
+                `<img src="${e.target.result}">`;
+        };
+        reader.readAsDataURL(file);
+    }
+};
+
+/* CHARACTER COUNT */
+let desc = document.getElementById("desc");
+let counter = document.getElementById("counter");
+
+desc.oninput = function(){
+    counter.innerText = desc.value.length + " / 150";
+};
+
+/* SELL TOGGLE */
+document.getElementById("sellCheck").onchange = function(){
+    document.getElementById("contactBox").style.display =
+        this.checked ? "block" : "none";
+};
+
+</script>
+
+</body>
+</html>

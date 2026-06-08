@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Signup Page</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 950px;
+    height: 580px;
+    display: flex;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.image-section {
+    width: 50%;
+}
+
+.image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.signup-section {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.signup-box {
+    width: 100%;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+.input-group label {
+    position: absolute;
+    left: 12px;
+    top: 14px;
+    color: #999;
+    background: white;
+    padding: 0 5px;
+    transition: 0.2s ease;
+    pointer-events: none;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -8px;
+    font-size: 12px;
+    color: #28a745;
+}
+
+/* ROLE CHECKBOX */
+.role-box {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #28a745;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #1e7e34;
+}
+
+.extra {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.extra a {
+    text-decoration: none;
+    color: #007bff;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- IMAGE -->
+    <div class="image-section">
+        <img src="static/images/a9.jpg">
+    </div>
+
+    <!-- FORM -->
+    <div class="signup-section">
+
+        <form class="signup-box" action="/signup" method="POST">
+
+            <h2>Create Account</h2>
+
+            <div class="input-group">
+                <input type="email" name="email" placeholder=" " required>
+                <label>Email</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="username" placeholder=" " required>
+                <label>Username</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" name="password" id="password" placeholder=" " required>
+                <label>Password</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="confirmPassword" placeholder=" " required>
+                <label>Confirm Password</label>
+            </div>
+
+            <!-- 🔥 ROLE SELECTION -->
+            <div class="role-box">
+                <input type="checkbox" name="make_admin" id="make_admin">
+                <label for="make_admin">Become Admin</label>
+            </div>
+
+            <button type="submit" class="btn">Sign Up</button>
+
+            <div class="extra">
+                <a href="/">Already have an account? Login</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+document.querySelector("form").addEventListener("submit", function(e) {
+    const pass = document.getElementById("password").value;
+    const confirm = document.getElementById("confirmPassword").value;
+
+    if (pass !== confirm) {
+        e.preventDefault();
+        alert("Passwords do not match ❌");
+    }
+});
+</script>
+
+</body>
+</html>
