@@ -1,9 +1,18 @@
+# Environment files
 .env
+
+# Database
 user.db
 *.db
+
+# Virtual environments
 venv/
+env/
+
+# Python cache
 __pycache__/
 *.pyc
 
+# Generated files
 static/generated/
 static/uploads/
